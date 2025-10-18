@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MK Audiovisual - Sistema de Gestão</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="MK Audiovisual">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-microphone"></i> MK Audiovisual</h1>
+                <div class="header-actions">
+                    <button class="btn btn-primary" onclick="showAddEventModal()">
+                        <i class="fas fa-plus"></i> Novo Evento
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('dashboard')">
+                <i class="fas fa-chart-pie"></i> Dashboard
+            </button>
+            <button class="nav-tab" onclick="showTab('events')">
+                <i class="fas fa-calendar"></i> Eventos
+            </button>
+            <button class="nav-tab" onclick="showTab('alerts')">
+                <i class="fas fa-bell"></i> Alertas
+            </button>
+            <button class="nav-tab" onclick="showTab('history')">
+                <i class="fas fa-history"></i> Histórico
+            </button>
+            <button class="nav-tab" onclick="showTab('calendar')">
+                <i class="fas fa-calendar-alt"></i> Calendário
+            </button>
+            <button class="nav-tab" onclick="showTab('settings')">
+                <i class="fas fa-cog"></i> Configurações
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Tab -->
+            <div id="dashboard" class="tab-content active">
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <h3><i class="fas fa-calendar-check"></i> Eventos do Mês</h3>
+                        <div class="stat-value" id="monthEvents">0</div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-dollar-sign"></i> Total do Mês</h3>
+                        <div class="stat-value" id="monthTotal">R$ 0,00</div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-building"></i> Empresa MK</h3>
+                        <div class="stat-value" id="companyAmount">R$ 0,00</div>
+                        <div class="stat-percentage">40%</div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-user"></i> Mikael</h3>
+                        <div class="stat-value" id="mikaelAmount">R$ 0,00</div>
+                        <div class="stat-percentage">30%</div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-user"></i> Cláudio</h3>
+                        <div class="stat-value" id="claudioAmount">R$ 0,00</div>
+                        <div class="stat-percentage">30%</div>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <h3>Eventos por Mês</h3>
+                    <canvas id="eventsChart" width="400" height="200"></canvas>
+                </div>
+            </div>
+
+            <!-- Events Tab -->
+            <div id="events" class="tab-content">
+                <div class="events-header">
+                    <h2>Lista de Eventos</h2>
+                    <div class="search-container">
+                        <input type="text" id="searchEvents" placeholder="Buscar eventos..." onkeyup="filterEvents()">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+                <div class="events-list" id="eventsList">
+                    <!-- Eventos serão carregados aqui via JavaScript -->
+                </div>
+            </div>
+
+            <!-- Alerts Tab -->
+            <div id="alerts" class="tab-content">
+                <div class="alerts-header">
+                    <h2>Alertas do Mês</h2>
+                </div>
+                <div class="alerts-list" id="alertsList">
+                    <!-- Alertas serão carregados aqui via JavaScript -->
+                </div>
+            </div>
+
+            <!-- History Tab -->
+            <div id="history" class="tab-content">
+                <div class="history-header">
+                    <h2>Histórico de Eventos</h2>
+                    <div class="history-filters">
+                        <select id="historyFilter" onchange="filterHistory()">
+                            <option value="all">Todos os eventos</option>
+                            <option value="past">Eventos passados</option>
+                            <option value="thisMonth">Este mês</option>
+                            <option value="lastMonth">Mês passado</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="history-list" id="historyList">
+                    <!-- Histórico será carregado aqui via JavaScript -->
+                </div>
+            </div>
+
+            <!-- Calendar Tab -->
+            <div id="calendar" class="tab-content">
+                <div class="calendar-header">
+                    <h2>Calendário de Eventos</h2>
+                    <div class="calendar-controls">
+                        <button class="btn btn-secondary" onclick="previousMonth()">
+                            <i class="fas fa-chevron-left"></i> Mês Anterior
+                        </button>
+                        <h3 id="currentMonthYear">Janeiro 2024</h3>
+                        <button class="btn btn-secondary" onclick="nextMonth()">
+                            Próximo Mês <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <button class="btn btn-primary" onclick="goToToday()">
+                            <i class="fas fa-calendar-day"></i> Hoje
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="calendar-container">
+                    <div class="calendar-grid" id="calendarGrid">
+                        <!-- Calendário será gerado aqui via JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="calendar-legend">
+                    <h4>Legenda:</h4>
+                    <div class="legend-items">
+                        <div class="legend-item">
+                            <div class="legend-color urgent"></div>
+                            <span>Evento Urgente (≤2 dias)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color warning"></div>
+                            <span>Evento Próximo (≤7 dias)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color normal"></div>
+                            <span>Evento Normal (>7 dias)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color past"></div>
+                            <span>Evento Passado</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div id="settings" class="tab-content">
+                <div class="settings-header">
+                    <h2>Configurações do Sistema</h2>
+                </div>
+                
+                <div class="settings-sections">
+                    <!-- Configurações de Percentuais -->
+                    <div class="settings-section">
+                        <h3><i class="fas fa-percentage"></i> Distribuição de Percentuais</h3>
+                        <div class="percentages-config" id="percentagesConfig">
+                            <!-- Configurações de percentuais serão carregadas aqui -->
+                        </div>
+                    </div>
+
+                    <!-- Configurações de Funcionários -->
+                    <div class="settings-section">
+                        <h3><i class="fas fa-users"></i> Funcionários</h3>
+                        <div class="employees-config" id="employeesConfig">
+                            <!-- Configurações de funcionários serão carregadas aqui -->
+                        </div>
+                        <button class="btn btn-primary" onclick="addEmployee()">
+                            <i class="fas fa-plus"></i> Adicionar Funcionário
+                        </button>
+                    </div>
+
+                    <!-- Configurações de Ícone Personalizado -->
+                    <div class="settings-section">
+                        <h3><i class="fas fa-image"></i> Ícone Personalizado</h3>
+                        <div class="icon-config">
+                            <div class="current-icon-preview">
+                                <h4>Ícone Atual:</h4>
+                                <div class="icon-preview" id="iconPreview">
+                                    <i class="fas fa-microphone"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="icon-options">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="radio" name="iconType" value="default" checked onchange="changeIconType('default')">
+                                        Usar ícone padrão (microfone)
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <input type="radio" name="iconType" value="upload" onchange="changeIconType('upload')">
+                                        Upload de arquivo (JPG, PNG, SVG)
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <input type="radio" name="iconType" value="url" onchange="changeIconType('url')">
+                                        URL de imagem
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="icon-upload-section" id="iconUploadSection" style="display: none;">
+                                <div class="form-group">
+                                    <label for="iconFile">Selecionar arquivo:</label>
+                                    <input type="file" id="iconFile" accept="image/*" onchange="handleIconUpload(this)">
+                                    <small>Formatos aceitos: JPG, PNG, SVG, GIF (máx. 2MB)</small>
+                                </div>
+                            </div>
+
+                            <div class="icon-url-section" id="iconUrlSection" style="display: none;">
+                                <div class="form-group">
+                                    <label for="iconUrl">URL da imagem:</label>
+                                    <input type="url" id="iconUrl" placeholder="https://exemplo.com/icone.png" onchange="handleIconUrl(this)">
+                                </div>
+                            </div>
+
+                            <div class="icon-size-config">
+                                <label for="iconSize">Tamanho do ícone:</label>
+                                <select id="iconSize" onchange="changeIconSize(this.value)">
+                                    <option value="small">Pequeno</option>
+                                    <option value="medium" selected>Médio</option>
+                                    <option value="large">Grande</option>
+                                </select>
+                            </div>
+
+                            <div class="icon-actions">
+                                <button class="btn btn-primary" onclick="saveIconConfig()">
+                                    <i class="fas fa-save"></i> Salvar Ícone
+                                </button>
+                                <button class="btn btn-secondary" onclick="resetIconConfig()">
+                                    <i class="fas fa-undo"></i> Resetar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Configurações de Alertas -->
+                    <div class="settings-section">
+                        <h3><i class="fas fa-bell"></i> Configurações de Alertas</h3>
+                        <div class="alerts-config">
+                            <div class="form-group">
+                                <label for="urgentDays">Dias para alerta urgente (vermelho):</label>
+                                <input type="number" id="urgentDays" min="1" max="30" value="2">
+                            </div>
+                            <div class="form-group">
+                                <label for="warningDays">Dias para alerta de aviso:</label>
+                                <input type="number" id="warningDays" min="1" max="30" value="7">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" id="showWeekAlert" checked>
+                                    Mostrar alerta de eventos da semana ao entrar
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Backup e Restauração -->
+                    <div class="settings-section">
+                        <h3><i class="fas fa-database"></i> Backup e Restauração</h3>
+                        <div class="backup-actions">
+                            <button class="btn btn-primary" onclick="exportAllData()">
+                                <i class="fas fa-download"></i> Exportar Dados
+                            </button>
+                            <button class="btn btn-secondary" onclick="importAllData()">
+                                <i class="fas fa-upload"></i> Importar Dados
+                            </button>
+                            <button class="btn btn-danger" onclick="clearAllData()">
+                                <i class="fas fa-trash"></i> Limpar Todos os Dados
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="settings-actions">
+                        <button class="btn btn-primary" onclick="saveSettings()">
+                            <i class="fas fa-save"></i> Salvar Configurações
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal para Adicionar/Editar Evento -->
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Novo Evento</h2>
+                <button class="close-btn" onclick="closeEventModal()">&times;</button>
+            </div>
+            <form id="eventForm" onsubmit="saveEvent(event)">
+                <div class="form-group">
+                    <label for="eventName">Nome do Evento *</label>
+                    <input type="text" id="eventName" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventClient">Nome da Contratante *</label>
+                    <input type="text" id="eventClient" required placeholder="Nome da pessoa ou empresa que contratou">
+                </div>
+                <div class="form-group">
+                    <label for="eventDate">Data do Evento *</label>
+                    <input type="date" id="eventDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventValue">Valor do Evento *</label>
+                    <input type="number" id="eventValue" step="0.01" min="0" placeholder="Ex: 1500.00" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventPhone">Telefone de Contato *</label>
+                    <input type="tel" id="eventPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventResponsible">Responsável pelo Evento *</label>
+                    <select id="eventResponsible" required>
+                        <option value="">Selecione...</option>
+                        <option value="Mikael">Mikael</option>
+                        <option value="Cláudio">Cláudio</option>
+                        <option value="Ambos">Ambos</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="eventLocation">Local do Evento *</label>
+                    <input type="text" id="eventLocation" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventEquipment">Equipamento Locado *</label>
+                    <select id="eventEquipment" required>
+                        <option value="">Selecione o equipamento...</option>
+                        <option value="DJ Completo">DJ Completo</option>
+                        <option value="Som Porte Médio">Som Porte Médio</option>
+                        <option value="Som Porte Pequeno">Som Porte Pequeno</option>
+                        <option value="Plataforma 360">Plataforma 360</option>
+                        <option value="Iluminação">Iluminação</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeEventModal()">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar Evento</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast para notificações -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Modal de instalação PWA -->
+    <div id="pwaInstallModal" class="pwa-install-modal">
+        <div class="pwa-install-content">
+            <div class="pwa-install-header">
+                <div class="pwa-icon">
+                    <i class="fas fa-microphone"></i>
+                </div>
+                <h3>Instalar MK Audiovisual</h3>
+                <button class="close-pwa-btn" onclick="closePWAInstallModal()">&times;</button>
+            </div>
+            <div class="pwa-install-body">
+                <p>Instale o app MK Audiovisual para ter acesso rápido e funcionalidade offline completa!</p>
+                <div class="pwa-benefits">
+                    <div class="benefit-item">
+                        <i class="fas fa-download"></i>
+                        <span>Acesso offline</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Como app nativo</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-bolt"></i>
+                        <span>Carregamento rápido</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-bell"></i>
+                        <span>Notificações</span>
+                    </div>
+                </div>
+                <div class="pwa-instructions" id="pwaInstructions">
+                    <!-- Instruções específicas por dispositivo serão carregadas aqui -->
+                </div>
+            </div>
+            <div class="pwa-install-actions">
+                <button class="btn btn-secondary" onclick="closePWAInstallModal()">
+                    Agora não
+                </button>
+                <button class="btn btn-primary" id="pwaInstallBtn" onclick="installPWA()">
+                    <i class="fas fa-download"></i> Instalar App
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de detalhes do evento -->
+    <div id="eventDetailModal" class="event-detail-modal">
+        <div class="event-detail-content">
+            <div class="event-detail-header">
+                <h3 class="event-detail-title" id="eventDetailTitle">Detalhes do Evento</h3>
+                <button class="close-detail-btn" onclick="closeEventDetailModal()">&times;</button>
+            </div>
+            <div class="event-detail-info" id="eventDetailInfo">
+                <!-- Detalhes serão carregados aqui via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="offline-storage.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Registrar Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(registration => {
+                        console.log('SW registrado com sucesso:', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('Falha no registro do SW:', registrationError);
+                    });
+            });
+        }
+
+        // Detectar se é PWA e capturar evento de instalação
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            // Armazenar o evento para uso posterior
+            window.deferredPrompt = e;
+            console.log('PWA pode ser instalado');
+        });
+
+        // Detectar quando o app foi instalado
+        window.addEventListener('appinstalled', () => {
+            console.log('PWA foi instalado com sucesso');
+            // Remover modal se estiver aberto
+            const modal = document.getElementById('pwaInstallModal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
