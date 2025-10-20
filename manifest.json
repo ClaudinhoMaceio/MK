@@ -1,14 +1,16 @@
 {
-  "name": "MK Audiovisual - Sistema de Gestão",
-  "short_name": "MK Audiovisual",
-  "description": "Sistema de gestão de eventos para MK Audiovisual",
-  "start_url": "./index.html",
+  "name": "Proposta de Locação - M A VIANA",
+  "short_name": "Proposta Viana",
+  "description": "Aplicativo para criação e gerenciamento de propostas de locação de equipamentos da M A VIANA",
+  "start_url": "/",
   "display": "standalone",
-  "background_color": "#1a1a2e",
-  "theme_color": "#667eea",
+  "background_color": "#F2F2F7",
+  "theme_color": "#007AFF",
   "orientation": "portrait-primary",
-  "scope": "./",
+  "scope": "/",
   "lang": "pt-BR",
+  "dir": "ltr",
+  "categories": ["business", "productivity", "utilities"],
   "icons": [
     {
       "src": "icons/icon-72x72.png",
@@ -59,27 +61,12 @@
       "purpose": "maskable any"
     }
   ],
-  "categories": ["business", "productivity", "utilities"],
-  "screenshots": [
-    {
-      "src": "screenshots/desktop.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "form_factor": "wide"
-    },
-    {
-      "src": "screenshots/mobile.png",
-      "sizes": "375x667",
-      "type": "image/png",
-      "form_factor": "narrow"
-    }
-  ],
   "shortcuts": [
     {
-      "name": "Novo Evento",
-      "short_name": "Novo Evento",
-      "description": "Adicionar um novo evento",
-      "url": "./index.html?action=new-event",
+      "name": "Nova Proposta",
+      "short_name": "Nova",
+      "description": "Criar uma nova proposta de locação",
+      "url": "/?action=new",
       "icons": [
         {
           "src": "icons/icon-96x96.png",
@@ -88,10 +75,22 @@
       ]
     },
     {
-      "name": "Dashboard",
-      "short_name": "Dashboard",
-      "description": "Ver dashboard com estatísticas",
-      "url": "./index.html?tab=dashboard",
+      "name": "Visualizar Proposta",
+      "short_name": "Visualizar",
+      "description": "Visualizar proposta atual",
+      "url": "/?action=preview",
+      "icons": [
+        {
+          "src": "icons/icon-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Gerar PDF",
+      "short_name": "PDF",
+      "description": "Gerar PDF da proposta",
+      "url": "/?action=pdf",
       "icons": [
         {
           "src": "icons/icon-96x96.png",
@@ -99,5 +98,61 @@
         }
       ]
     }
-  ]
-}
+  ],
+  "screenshots": [
+    {
+      "src": "icons/screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Tela principal do aplicativo"
+    },
+    {
+      "src": "icons/screenshot-narrow.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Tela principal do aplicativo"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "handle_links": "preferred",
+  "protocol_handlers": [
+    {
+      "protocol": "web+proposta",
+      "url": "/?proposta=%s"
+    }
+  ],
+  "file_handlers": [
+    {
+      "action": "/",
+      "accept": {
+        "application/json": [".json"],
+        "text/plain": [".txt"]
+      }
+    }
+  ],
+  "share_target": {
+    "action": "/",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url",
+      "files": [
+        {
+          "name": "files",
+          "accept": ["application/pdf", "image/*"]
+        }
+      ]
+    }
+  }
+} 

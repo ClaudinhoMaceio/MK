@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Proposta de Locação - M A VIANA</title>
+    <title>BACKUP - Proposta de Locação - M A VIANA</title>
     
     <!-- PWA Meta Tags -->
     <meta name="description" content="Aplicativo para criação e gerenciamento de propostas de locação de equipamentos da M A VIANA">
@@ -29,7 +29,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
     <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
@@ -188,18 +188,13 @@
                     </div>
                 </div>
 
-                <!-- Working Hours Notice -->
+                <!-- Acceptance Term -->
                 <div class="form-group">
-                    <h3>Aviso de Horas Trabalhadas</h3>
+                    <h3>Termo de Aceite</h3>
                     <div class="form-row">
                         <div class="form-field full-width">
-                            <label>Horário de Funcionamento:</label>
-                            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #007AFF; margin-bottom: 10px; text-align: center;">
-                                <p style="margin: 0 0 8px 0; font-size: 14px; font-weight: 600; color: #2c3e50;">Horário de Trabalho:</p>
-                                <p style="margin: 0 0 5px 0; font-size: 13px; color: #555;">Segunda a Quinta: 07h às 17h</p>
-                                <p style="margin: 0 0 5px 0; font-size: 13px; color: #555;">Sexta: 07h às 18h com 1 hora de almoço</p>
-                                <p style="margin: 0 0 5px 0; font-size: 12px; color: #666; font-style: italic;">Sábado, Domingo e Feriados NÃO inclusos (dias cobrados como hora extra)</p>
-                            </div>
+                            <label>Texto do Termo:</label>
+                            <textarea id="termo-texto" rows="3" placeholder="Declaramos, para os devidos fins, que concordamos com a proposta enviada..."></textarea>
                         </div>
                     </div>
                     <div class="form-row">
@@ -235,30 +230,6 @@
         </section>
     </div>
 
-    <script>
-        // Verificar se as bibliotecas foram carregadas corretamente
-        window.addEventListener('load', function() {
-            console.log('Verificando bibliotecas...');
-            
-            if (typeof window.jspdf !== 'undefined') {
-                console.log('✅ jsPDF carregado com sucesso');
-                console.log('Versão jsPDF:', window.jspdf.version || 'N/A');
-            } else {
-                console.error('❌ jsPDF não foi carregado');
-            }
-            
-            if (typeof html2canvas !== 'undefined') {
-                console.log('✅ html2canvas carregado com sucesso');
-                console.log('Versão html2canvas:', html2canvas.version || 'N/A');
-            } else {
-                console.error('❌ html2canvas não foi carregado');
-            }
-            
-            // Verificar orientação do dispositivo
-            console.log('Orientação do dispositivo:', window.screen.orientation ? window.screen.orientation.type : 'N/A');
-            console.log('Dimensões da tela:', window.screen.width + 'x' + window.screen.height);
-        });
-    </script>
     <script src="script.js"></script>
 </body>
 </html> 

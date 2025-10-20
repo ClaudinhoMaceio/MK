@@ -1,125 +1,161 @@
-# MK Audiovisual - Sistema de Gestão
+# 📱 Proposta de Locação - M A VIANA
 
-Sistema completo de gestão de eventos para a empresa MK Audiovisual, desenvolvido como PWA (Progressive Web App) com funcionalidade offline.
+Um aplicativo web progressivo (PWA) moderno e responsivo para criação e gerenciamento de propostas de locação de equipamentos da M A VIANA LOCAÇÕES E SERVIÇOS - ME.
 
-## 🚀 Funcionalidades
+## ✨ Características Principais
 
-### ✅ Cadastro de Eventos
-- Nome do evento
-- Data do evento
-- Valor do evento
-- Telefone de contato
-- Responsável pelo evento (Mikael, Cláudio ou Ambos)
-- Local do evento
+### 🎯 **Funcionalidades**
+- ✅ **Campo de Frequência de Pagamento** - Selecionável (Mensal, Quinzenal, Diário, Semanal)
+- ✅ **Interface Responsiva** - Otimizada para mobile, tablet e desktop
+- ✅ **PWA Completo** - Instalável em Android, iOS e PC
+- ✅ **Modo Offline** - Funciona sem internet
+- ✅ **Geração de PDF** - Propostas em formato profissional
+- ✅ **Compartilhamento** - Via WhatsApp e outras plataformas
+- ✅ **Sincronização** - Dados salvos automaticamente
+- ✅ **Atualizações Automáticas** - Notificações de novas versões
 
-### 📊 Dashboard Inteligente
-- Total de eventos do mês
-- Valor total do mês
-- Distribuição automática de percentuais:
-  - **40%** para a empresa MK Audiovisual
-  - **30%** para Mikael
-  - **30%** para Cláudio
-- Gráfico de eventos por mês
+### 📱 **Otimizações Mobile**
+- **Design Mobile-First** - Interface otimizada para smartphones
+- **Touch-Friendly** - Botões e elementos otimizados para toque
+- **Safe Area Support** - Compatível com notch e bordas arredondadas
+- **Orientação Landscape** - Suporte para rotação de tela
+- **Gestos Nativos** - Scroll suave e animações fluidas
 
-### 🔔 Sistema de Alertas
-- Alertas automáticos para eventos do mês
-- Notificações de eventos próximos
-- Status visual dos eventos (urgente, próximo, normal)
+### 🌐 **PWA Features**
+- **Instalação Nativa** - Como app nativo no dispositivo
+- **Cache Inteligente** - Estratégias de cache otimizadas
+- **Background Sync** - Sincronização em segundo plano
+- **Push Notifications** - Notificações push (preparado)
+- **Share Target** - Receber conteúdo compartilhado
+- **File Handlers** - Abrir arquivos específicos
 
-### 📱 PWA (Progressive Web App)
-- Funciona offline
-- Pode ser instalado no celular/computador
-- Interface responsiva
-- Armazenamento local dos dados
+## 🚀 Como Usar
+
+### 📋 **Criar Proposta**
+1. Acesse o aplicativo no navegador
+2. Preencha os dados da empresa (já preenchidos)
+3. Adicione informações do cliente
+4. Selecione equipamentos desejados
+5. Escolha a frequência de pagamento para cada item
+6. Salve e visualize a proposta
+
+### 📱 **Instalar como App**
+1. Abra o aplicativo no Chrome/Safari
+2. Toque no botão "Instalar App" (se disponível)
+3. Ou use o menu do navegador → "Adicionar à tela inicial"
+4. O app será instalado como aplicativo nativo
+
+### 🔄 **Atualizações**
+- O app verifica automaticamente por atualizações
+- Notificações aparecem quando há nova versão
+- Clique em "Atualizar" para aplicar mudanças
 
 ## 🛠️ Tecnologias Utilizadas
 
 - **HTML5** - Estrutura semântica
-- **CSS3** - Design moderno e responsivo
-- **JavaScript ES6+** - Funcionalidades interativas
-- **Service Worker** - Funcionalidade offline
-- **LocalStorage** - Armazenamento de dados
-- **PWA** - Aplicativo web progressivo
+- **CSS3** - Design responsivo com variáveis CSS
+- **JavaScript ES6+** - Funcionalidades modernas
+- **PWA APIs** - Service Worker, Manifest, Cache API
+- **PDF Generation** - jsPDF + html2canvas
+- **Font Awesome** - Ícones profissionais
 
-## 📱 Como Usar
+## 📊 Compatibilidade
 
-### Instalação
-1. Abra o arquivo `index.html` no navegador
-2. O sistema funcionará imediatamente
-3. Para instalar como app:
-   - No Chrome: Clique no ícone de instalação na barra de endereços
-   - No Edge: Clique em "Instalar" no menu
-   - No mobile: Adicione à tela inicial
+### 🌐 **Navegadores**
+- ✅ Chrome 70+
+- ✅ Safari 12+
+- ✅ Firefox 68+
+- ✅ Edge 79+
 
-### Cadastro de Eventos
-1. Clique em "Novo Evento"
-2. Preencha todos os campos obrigatórios
-3. Clique em "Salvar Evento"
+### 📱 **Dispositivos**
+- ✅ Android 7.0+
+- ✅ iOS 12.0+
+- ✅ Windows 10+
+- ✅ macOS 10.14+
 
-### Visualização
-- **Dashboard**: Veja estatísticas e valores
-- **Eventos**: Lista completa de eventos cadastrados
-- **Alertas**: Eventos do mês com status
+## 🎨 Design System
 
-### Busca
-- Use a barra de busca na aba "Eventos" para filtrar
+### 🎯 **Cores**
+- **Primária**: #007AFF (Azul iOS)
+- **Secundária**: #5856D6 (Roxo)
+- **Sucesso**: #34C759 (Verde)
+- **Aviso**: #FF9500 (Laranja)
+- **Erro**: #FF3B30 (Vermelho)
 
-## 💾 Armazenamento
+### 📐 **Tipografia**
+- **Família**: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto
+- **Tamanhos**: 12px - 24px (escala responsiva)
+- **Pesos**: 400, 500, 600, 700
 
-- Todos os dados são salvos localmente no navegador
-- Não há necessidade de internet após o primeiro carregamento
-- Os dados são mantidos mesmo se fechar o navegador
+### 📱 **Breakpoints**
+- **Mobile**: < 768px
+- **Tablet**: 768px - 1024px
+- **Desktop**: > 1024px
 
-## 🎨 Design
+## 🔧 Configuração
 
-- Interface moderna e limpa
-- Cores da empresa (azul e roxo)
-- Totalmente responsivo (funciona em celular, tablet e desktop)
-- Animações suaves
-- Ícones Font Awesome
-
-## 📊 Distribuição de Valores
-
-O sistema calcula automaticamente a distribuição dos valores:
-
+### 📁 **Estrutura de Arquivos**
 ```
-Valor Total do Mês = Soma de todos os eventos do mês
-
-Empresa MK Audiovisual = 40% do total
-Mikael = 30% do total  
-Cláudio = 30% do total
-```
-
-## 🔧 Personalização
-
-Para alterar os percentuais de distribuição, edite o arquivo `script.js` na função `updateDashboard()`:
-
-```javascript
-const companyAmount = monthTotal * 0.4; // 40% para a empresa
-const mikaelAmount = monthTotal * 0.3;  // 30% para Mikael
-const claudioAmount = monthTotal * 0.3; // 30% para Cláudio
+proposta-viana/
+├── index.html          # Página principal
+├── styles.css          # Estilos responsivos
+├── script.js           # Lógica do aplicativo
+├── manifest.json       # Configuração PWA
+├── sw.js              # Service Worker
+├── icons/             # Ícones do PWA
+│   ├── logo.png
+│   ├── icon-72x72.png
+│   ├── icon-192x192.png
+│   └── icon-512x512.png
+└── README.md          # Documentação
 ```
 
-## 📱 Compatibilidade
+### 🚀 **Instalação Local**
+1. Clone o repositório
+2. Abra o terminal na pasta do projeto
+3. Execute: `python -m http.server 8000`
+4. Acesse: `http://localhost:8000`
 
-- ✅ Chrome (recomendado)
-- ✅ Firefox
-- ✅ Safari
-- ✅ Edge
-- ✅ Mobile (iOS/Android)
+### 📦 **Deploy**
+- Hospede em qualquer servidor web estático
+- Certifique-se de que HTTPS está habilitado
+- Configure o service worker corretamente
 
-## 🚀 Próximas Funcionalidades
+## 🔄 Changelog
 
-- [ ] Exportação de relatórios em PDF
-- [ ] Sincronização na nuvem
-- [ ] Notificações push
-- [ ] Backup automático
-- [ ] Relatórios mensais detalhados
+### v2.0.0 (Atual)
+- ✨ **Campo de Frequência de Pagamento** implementado
+- 📱 **Design Mobile-First** completamente reformulado
+- 🌐 **PWA Avançado** com funcionalidades nativas
+- 🎨 **Sistema de Cores** modernizado
+- ⚡ **Performance** otimizada
+- 🔧 **Service Worker** melhorado
+- 📊 **Responsividade** aprimorada
+
+### v1.0.0
+- 🎯 Versão inicial do aplicativo
+- 📋 Funcionalidades básicas de proposta
+- 📱 Design responsivo básico
+
+## 🤝 Contribuição
+
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature
+3. Commit suas mudanças
+4. Push para a branch
+5. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
 
 ## 📞 Suporte
 
-Para dúvidas ou sugestões, entre em contato com o desenvolvedor.
+- **Empresa**: CSMM
+- **Contato**: (11) 94006-0934
+- **Email**: csmm2029@gmail.com
 
 ---
 
-**Desenvolvido com ❤️ para MK Audiovisual**
+
+**Desenvolvido com ❤️ para M A VIANA LOCAÇÕES E SERVIÇOS - ME** 
