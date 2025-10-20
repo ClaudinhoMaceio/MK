@@ -158,4 +158,4 @@ Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes
 ---
 
 
-**Desenvolvido com ❤️ para M A VIANA LOCAÇÕES E SERVIÇOS - ME** 
+**Desenvolvido com ❤️ para mk audiovisual
